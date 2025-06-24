@@ -315,3 +315,18 @@ mod host_api_impl {
         std::os::arceos::modules::axconfig::SMP
     }
 }
+
+#[axvisor_api::api_mod_impl(axvisor_api::guest_memory)]
+mod guest_memory_api_impl {
+    use core::ops::Deref;
+
+    use axaddrspace::GuestPhysAddr;
+    use axvisor_api::vmm::{VCpuId, VMId};
+    use memory_addr::PhysAddr;
+
+    extern fn translate_to_phys(vm_id: VMId, _vcpu_id: VCpuId, addr: GuestPhysAddr) -> Option<PhysAddr> {
+        super::vmm::with_wm(vm_id, |vm| {
+            vm.translate(addr).ok()
+        }).flatten()
+    }
+}
