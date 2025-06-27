@@ -22,7 +22,7 @@ entry_point = 0x8020_0000
 # Load from file system.
 image_location = "memory"
 # The file path of the kernel image.
-kernel_path = "/home/debin/Codes/arceos-umhv/axvirtio/virtio0627/shell_aarch64-qemu-virt_0x800.bin"
+kernel_path = "../../../arceos_1/examples/shell/shell_aarch64-qemu-virt.bin"
 # The load address of the kernel image.
 kernel_load_addr = 0x8020_0000
 ## Load from memory
