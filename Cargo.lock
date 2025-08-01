@@ -120,15 +120,15 @@ version = "0.1.0"
 dependencies = [
  "axalloc",
  "axconfig 0.1.0",
- "axdriver",
+ "axdriver 0.1.0",
  "axerrno",
  "axfeat",
- "axfs",
+ "axfs 0.1.0",
  "axhal",
  "axio",
  "axlog",
  "axruntime",
- "axsync",
+ "axsync 0.1.0",
  "axtask",
 ]
 
@@ -296,6 +296,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "axdriver"
+version = "0.1.0"
+source = "git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm#968bb9aa657541afcbc94f4c35f6539e22f03099"
+dependencies = [
+ "axconfig 0.1.0 (git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm)",
+ "axdriver_base",
+ "axdriver_block",
+ "axdriver_pci",
+ "axhal",
+ "cfg-if",
+ "crate_interface",
+ "log",
+]
+
+[[package]]
 name = "axdriver_base"
 version = "0.1.2"
 source = "git+https://github.com/arceos-org/axdriver_crates.git?tag=v0.1.2#84eb2170f865e6fa29b78995a86f4fcdcede63df"
@@ -342,12 +357,12 @@ name = "axfeat"
 version = "0.1.0"
 dependencies = [
  "axalloc",
- "axdriver",
- "axfs",
+ "axdriver 0.1.0",
+ "axfs 0.1.0",
  "axhal",
  "axlog",
  "axruntime",
- "axsync",
+ "axsync 0.1.0",
  "axtask",
 ]
 
@@ -355,15 +370,36 @@ dependencies = [
 name = "axfs"
 version = "0.1.0"
 dependencies = [
- "axdriver",
+ "axdriver 0.1.0",
  "axdriver_block",
  "axerrno",
  "axfs_devfs",
  "axfs_ramfs",
  "axfs_vfs",
  "axio",
- "axns",
- "axsync",
+ "axns 0.1.0",
+ "axsync 0.1.0",
+ "cap_access",
+ "cfg-if",
+ "fatfs",
+ "lazyinit",
+ "log",
+]
+
+[[package]]
+name = "axfs"
+version = "0.1.0"
+source = "git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm#968bb9aa657541afcbc94f4c35f6539e22f03099"
+dependencies = [
+ "axdriver 0.1.0 (git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm)",
+ "axdriver_block",
+ "axerrno",
+ "axfs_devfs",
+ "axfs_ramfs",
+ "axfs_vfs",
+ "axio",
+ "axns 0.1.0 (git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm)",
+ "axsync 0.1.0 (git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm)",
  "cap_access",
  "cfg-if",
  "fatfs",
@@ -485,13 +521,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "axns"
+version = "0.1.0"
+source = "git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm#968bb9aa657541afcbc94f4c35f6539e22f03099"
+dependencies = [
+ "crate_interface",
+ "lazyinit",
+]
+
+[[package]]
 name = "axruntime"
 version = "0.1.0"
 dependencies = [
  "axalloc",
  "axconfig 0.1.0",
- "axdriver",
- "axfs",
+ "axdriver 0.1.0",
+ "axfs 0.1.0",
  "axhal",
  "axlog",
  "axmm",
@@ -517,6 +562,15 @@ dependencies = [
 [[package]]
 name = "axsync"
 version = "0.1.0"
+dependencies = [
+ "axtask",
+ "kspin",
+]
+
+[[package]]
+name = "axsync"
+version = "0.1.0"
+source = "git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm#968bb9aa657541afcbc94f4c35f6539e22f03099"
 dependencies = [
  "axtask",
  "kspin",
@@ -558,6 +612,7 @@ dependencies = [
  "axaddrspace",
  "axdevice_base",
  "axerrno",
+ "axfs 0.1.0 (git+https://github.com/arceos-hypervisor/arceos.git?branch=vmm)",
  "axhal",
  "axstd",
  "axvirtio-common",
