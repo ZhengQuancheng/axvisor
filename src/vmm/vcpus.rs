@@ -114,6 +114,7 @@ impl VMVCpus {
 ///
 /// * `vm_id` - The ID of the VM whose VCpu wait queue is used to block the current thread.
 ///
+#[allow(static_mut_refs)]
 fn wait(vm_id: usize) {
     unsafe { VM_VCPU_TASK_WAIT_QUEUE.get(&vm_id) }
         .unwrap()
@@ -128,6 +129,7 @@ fn wait(vm_id: usize) {
 /// * `vm_id` - The ID of the VM whose VCpu wait queue is used to block the current thread.
 /// * `condition` - A closure that returns a boolean value indicating whether the condition is met.
 ///
+#[allow(static_mut_refs)]
 fn wait_for<F>(vm_id: usize, condition: F)
 where
     F: Fn() -> bool,
@@ -144,6 +146,7 @@ where
 ///
 /// * `vm_id` - The ID of the VM whose VCpus are to be notified.
 ///
+#[allow(static_mut_refs)]
 pub(crate) fn notify_primary_vcpu(vm_id: usize) {
     // Generally, the primary VCpu is the first and **only** VCpu in the list.
     unsafe { VM_VCPU_TASK_WAIT_QUEUE.get_mut(&vm_id) }
@@ -152,6 +155,7 @@ pub(crate) fn notify_primary_vcpu(vm_id: usize) {
 }
 
 /// Marks the VCpu of the specified VM as running.
+#[allow(static_mut_refs)]
 fn mark_vcpu_running(vm_id: usize) {
     unsafe { VM_VCPU_TASK_WAIT_QUEUE.get(&vm_id) }
         .unwrap()
@@ -160,6 +164,7 @@ fn mark_vcpu_running(vm_id: usize) {
 
 /// Marks the VCpu of the specified VM as exiting for VM shutdown. Returns true if this was the last
 /// VCpu to exit.
+#[allow(static_mut_refs)]
 fn mark_vcpu_exiting(vm_id: usize) -> bool {
     unsafe { VM_VCPU_TASK_WAIT_QUEUE.get(&vm_id) }
         .unwrap()
@@ -202,6 +207,7 @@ fn vcpu_on(vm: VMRef, vcpu_id: usize, entry_point: GuestPhysAddr, arg: usize) {
 
     let vcpu_task = alloc_vcpu_task(vm.clone(), vcpu);
 
+    #[allow(static_mut_refs)]
     unsafe { VM_VCPU_TASK_WAIT_QUEUE.get_mut(&vm.id()) }
         .unwrap()
         .add_vcpu_task(vcpu_task);
@@ -225,6 +231,7 @@ pub fn setup_vm_primary_vcpu(vm: VMRef) {
     let primary_vcpu = vm.vcpu_list()[primary_vcpu_id].clone();
     let primary_vcpu_task = alloc_vcpu_task(vm.clone(), primary_vcpu);
     vm_vcpus.add_vcpu_task(primary_vcpu_task);
+    #[allow(static_mut_refs)]
     unsafe {
         VM_VCPU_TASK_WAIT_QUEUE.insert(vm_id, vm_vcpus);
     }

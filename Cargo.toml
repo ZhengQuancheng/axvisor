@@ -38,7 +38,6 @@ exclude = ["crates"]
 license = "GPL-3.0-or-later OR Apache-2.0 OR MulanPubL-2.0 OR MulanPSL2"
 
 [features]
-fs = ["axstd/fs"]
 irq = []
 hv = []
 

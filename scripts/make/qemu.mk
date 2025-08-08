@@ -30,7 +30,8 @@ qemu_args-y := -m $(MEM) -smp $(SMP) $(qemu_args-$(ARCH))
 
 qemu_args-$(BLK) += \
   -device virtio-blk-$(vdev-suffix),drive=disk0 \
-  -drive id=disk0,if=none,format=raw,file=$(DISK_IMG)
+  -drive id=disk0,if=none,format=raw,file=$(DISK_IMG) \
+  -drive file=nvme.img,if=none,id=nvm -device nvme,serial=deadbeef,drive=nvm
 
 qemu_args-$(NET) += \
   -device virtio-net-$(vdev-suffix),netdev=net0
