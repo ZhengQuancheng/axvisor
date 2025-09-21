@@ -402,7 +402,7 @@ fn vcpu_run() {
                         let aff1 = (target_cpu >> 8) & 0xff;
                         let irm = (send_to_all as u64);
 
-                        let icc_sgi1r_value = 
+                        let icc_sgi1r_value =
                             (vector as u64) << 24 |
                             aff3 << 48 |
                             aff2 << 32 |
@@ -410,7 +410,7 @@ fn vcpu_run() {
                             irm << 40 |
                             target_cpu_aux;
 
-                        debug!(
+                        trace!(
                             "VM[{}] run VCpu[{}] SendIPI, target_cpu={:#x}, target_cpu_aux={:#x}, vector={}, icc_sgi1r_value={:#x}",
                             vm_id, vcpu_id, target_cpu, target_cpu_aux, vector, icc_sgi1r_value
                         );
