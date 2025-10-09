@@ -52,10 +52,10 @@ jobs:
         rust-toolchain: [nightly-2025-05-20]
     steps:
     - uses: actions/checkout@v4
-    - uses: dtolnay/rust-toolchain@stable
-      with:
-        toolchain: ${{ matrix.rust-toolchain }}
-        components: rust-src
+    # - uses: dtolnay/rust-toolchain@stable
+    #   with:
+    #     toolchain: ${{ matrix.rust-toolchain }}
+    #     components: rust-src
     # - uses: Swatinem/rust-cache@v2
     - run: cargo install cargo-binutils
     - name: Update rust-toolchain.toml
@@ -79,10 +79,10 @@ jobs:
         rust-toolchain: [nightly-2025-05-20]
     steps:
     - uses: actions/checkout@v4
-    - uses: dtolnay/rust-toolchain@stable
-      with:
-        toolchain: ${{ matrix.rust-toolchain }}
-        components: rust-src
+    # - uses: dtolnay/rust-toolchain@stable
+    #   with:
+    #     toolchain: ${{ matrix.rust-toolchain }}
+    #     components: rust-src
     # - uses: Swatinem/rust-cache@v2
     - run: cargo install cargo-binutils
     - name: Update rust-toolchain.toml
@@ -91,7 +91,7 @@ jobs:
     - name: Run guests on rk3568
       continue-on-error: ${{ matrix.rust-toolchain == 'nightly' }}
       run: |
-        cargo install ostool --force
+        cargo install ostool --force --version 0.7.26
         git clone https://github.com/arceos-hypervisor/axboard_test
         cd axboard_test
         ./run.sh rk3568-arceos
@@ -106,10 +106,10 @@ jobs:
         rust-toolchain: [nightly-2025-05-20, nightly]
     steps:
     - uses: actions/checkout@v4
-    - uses: dtolnay/rust-toolchain@stable
-      with:
-        toolchain: ${{ matrix.rust-toolchain }}
-        components: rust-src
+    # - uses: dtolnay/rust-toolchain@stable
+    #   with:
+    #     toolchain: ${{ matrix.rust-toolchain }}
+    #     components: rust-src
     # - uses: Swatinem/rust-cache@v2
     - run: cargo install cargo-binutils
     # - uses: arceos-org/setup-qemu@v0.1
