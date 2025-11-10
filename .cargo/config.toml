@@ -1,5 +1,20 @@
-# [patch."https://github.com/arceos-hypervisor/axvm.git".axvm]
-# path = "crates/axvm"
+[patch."https://github.com/arceos-hypervisor/arm_vcpu".arm_vcpu]
+path = "crates/arm_vcpu"
+
+[patch."https://github.com/arceos-hypervisor/axdevice".axdevice]
+path = "crates/axdevice"
+
+[patch.crates-io.axvcpu]
+path = "crates/axvcpu"
+
+[patch.crates-io.arm_vgic]
+path = "crates/arm_vgic"
+
+[patch."https://github.com/arceos-hypervisor/axvcpu".axvcpu]
+path = "crates/axvcpu"
+
+[patch."https://github.com/arceos-hypervisor/axvm.git".axvm]
+path = "crates/axvm"
 
 [target.aarch64-unknown-none-softfloat]
 rustflags = [
