@@ -232,7 +232,7 @@ dependencies = [
  "axaddrspace",
  "axdevice_base",
  "axerrno",
- "axvcpu",
+ "axvcpu 0.1.2",
  "axvisor_api",
  "log",
  "numeric-enum-macro",
@@ -288,6 +288,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b0f477b951e452a0b6b4a10b53ccd569042d1d01729b519e02074a9c0958a063"
 
 [[package]]
+name = "assert_matches"
+version = "1.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b34d609dfbaf33d6889b2b7106d3ca345eacad44200913df5ba02bfd31d2ba9"
+
+[[package]]
 name = "async-trait"
 version = "0.1.89"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -313,13 +319,14 @@ checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
 [[package]]
 name = "axaddrspace"
 version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "06b129114ab36be728ef11dd6540559c30deb6332378157d22bdc0aae6803a63"
 dependencies = [
+ "assert_matches",
  "axerrno",
+ "axin",
  "bit_field",
  "bitflags 2.10.0",
  "cfg-if",
+ "lazy_static",
  "lazyinit",
  "log",
  "memory_addr",
@@ -327,6 +334,7 @@ dependencies = [
  "numeric-enum-macro",
  "page_table_entry",
  "page_table_multiarch",
+ "spin 0.10.0",
  "x86",
 ]
 
@@ -629,6 +637,18 @@ source = "git+https://github.com/arceos-hypervisor/axhvc.git#e4ca6f919b9900f35e4
 dependencies = [
  "axerrno",
  "numeric-enum-macro",
+]
+
+[[package]]
+name = "axin"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6db62cb7067e33d432df247b32ee450ae267cb16319c8c5de247381c3652a639"
+dependencies = [
+ "proc-macro-crate",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.110",
 ]
 
 [[package]]
@@ -1043,6 +1063,19 @@ dependencies = [
 
 [[package]]
 name = "axvcpu"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cefe761786c0c69a7c0eaf45602c460f721bce9d8b8decc4f733b488e9da657f"
+dependencies = [
+ "axaddrspace",
+ "axerrno",
+ "axvisor_api",
+ "memory_addr",
+ "percpu",
+]
+
+[[package]]
+name = "axvcpu"
 version = "0.1.2"
 dependencies = [
  "axaddrspace",
@@ -1067,7 +1100,7 @@ dependencies = [
  "axhvc",
  "axruntime",
  "axstd",
- "axvcpu",
+ "axvcpu 0.1.1",
  "axvisor_api",
  "axvm",
  "bitflags 2.10.0",
@@ -1125,13 +1158,15 @@ dependencies = [
 name = "axvm"
 version = "0.1.0"
 dependencies = [
+ "aarch64-cpu-ext",
+ "anyhow",
  "arm_vcpu",
  "arm_vgic 0.1.0",
  "axaddrspace",
  "axdevice",
  "axdevice_base",
  "axerrno",
- "axvcpu",
+ "axvcpu 0.1.1",
  "axvmconfig",
  "cfg-if",
  "cpumask",
@@ -4465,7 +4500,7 @@ checksum = "13f38f28fe6c02bb3ced43087c9667b23d18adf729becdc5adf1253f7df83904"
 dependencies = [
  "axaddrspace",
  "axerrno",
- "axvcpu",
+ "axvcpu 0.1.1",
  "axvisor_api",
  "bit_field",
  "bitflags 2.10.0",
@@ -6478,7 +6513,7 @@ dependencies = [
  "axaddrspace",
  "axdevice_base",
  "axerrno",
- "axvcpu",
+ "axvcpu 0.1.1",
  "axvisor_api",
  "bit_field",
  "bitflags 2.10.0",

@@ -10,6 +10,9 @@ path = "modules/axvcpu"
 [patch.crates-io.arm_vgic]
 path = "modules/arm_vgic"
 
+[patch.crates-io.axaddrspace]
+path = "modules/axaddrspace"
+
 [patch."https://github.com/arceos-hypervisor/axvcpu".axvcpu]
 path = "modules/axvcpu"
 
