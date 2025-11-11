@@ -13,3 +13,6 @@
 [submodule "modules/arm_vgic"]
 	path = modules/arm_vgic
 	url = https://github.com/arceos-hypervisor/arm_vgic
+[submodule "modules/axaddrspace"]
+	path = modules/axaddrspace
+	url = https://github.com/arceos-hypervisor/axaddrspace
