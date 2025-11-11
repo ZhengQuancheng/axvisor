@@ -10,3 +10,6 @@
 [submodule "modules/axdevice"]
 	path = modules/axdevice
 	url = https://github.com/arceos-hypervisor/axdevice
+[submodule "modules/arm_vgic"]
+	path = modules/arm_vgic
+	url = https://github.com/arceos-hypervisor/arm_vgic
