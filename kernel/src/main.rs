@@ -23,7 +23,7 @@ fn main() {
     logo::print_logo();
 
     info!("Starting virtualization...");
-    info!("Hardware support: {:?}", axvm::has_hardware_support());
+    // info!("Hardware support: {:?}", axvm::has_hardware_support());
     hal::enable_virtualization();
 
     vmm::init();

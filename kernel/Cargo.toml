@@ -21,6 +21,7 @@ lazyinit = "0.2"
 log = "0.4"
 spin = "0.9"
 timer_list = "0.1.0"
+anyhow = {version = "1.0", default-features = false}
 
 # System dependent modules provided by ArceOS.
 axstd = {workspace = true, features = [

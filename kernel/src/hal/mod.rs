@@ -6,6 +6,7 @@ use std::os::arceos::{
     },
 };
 
+use anyhow::Context;
 use axerrno::{AxResult, ax_err_type};
 use memory_addr::PAGE_SIZE_4K;
 use page_table_multiarch::PagingHandler;
@@ -120,6 +121,8 @@ pub(crate) fn enable_virtualization() {
 
     hardware_check();
 
+    axvm::vhal::init().unwrap();
+
     let cpu_count = axruntime::cpu_count();
 
     for cpu_id in 0..cpu_count {
@@ -135,13 +138,19 @@ pub(crate) fn enable_virtualization() {
 
             vmm::init_timer_percpu();
 
-            let percpu = unsafe { AXVM_PER_CPU.current_ref_mut_raw() };
-            percpu
-                .init(this_cpu_id())
-                .expect("Failed to initialize percpu state");
-            percpu
-                .hardware_enable()
-                .expect("Failed to enable virtualization");
+            axvm::vhal::current_enable_viretualization()
+                .with_context(move || {
+                    format!("Failed to enable virtualization on cpu [{cpu_id:#x}]")
+                })
+                .unwrap();
+
+            // let percpu = unsafe { AXVM_PER_CPU.current_ref_mut_raw() };
+            // percpu
+            //     .init(this_cpu_id())
+            //     .expect("Failed to initialize percpu state");
+            // percpu
+            //     .hardware_enable()
+            //     .expect("Failed to enable virtualization");
 
             info!("Hardware virtualization support enabled on core {cpu_id}");
 
