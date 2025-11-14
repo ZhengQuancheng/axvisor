@@ -12,10 +12,9 @@ extern crate axstd as std;
 extern crate axruntime;
 extern crate driver;
 
-mod hal;
 mod logo;
-mod shell;
-mod task;
+// mod shell;
+// mod task;
 mod vmm;
 
 #[unsafe(no_mangle)]
@@ -24,12 +23,11 @@ fn main() {
 
     info!("Starting virtualization...");
     // info!("Hardware support: {:?}", axvm::has_hardware_support());
-    hal::enable_virtualization();
 
     vmm::init();
     vmm::start();
 
     info!("[OK] Default guest initialized");
 
-    shell::console_init();
+    // shell::console_init();
 }

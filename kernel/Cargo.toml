@@ -38,7 +38,6 @@ axstd = {workspace = true, features = [
 axaddrspace.workspace = true
 axhvc.workspace = true
 axruntime = {workspace = true, features = ["alloc", "irq", "paging", "smp", "driver-dyn", "multitask"]}
-axvcpu.workspace = true
 axvm.workspace = true
 
 # System independent crates provided by ArceOS, these crates could be imported by remote url. 
@@ -57,7 +56,7 @@ vm-fdt = {workspace = true, default-features = false, features = ["alloc"]}
 
 axdevice.workspace = true
 axdevice_base = "0.1"
-axvisor_api = "0.1"
+# axvisor_api = "0.1"
 driver.workspace = true
 
 

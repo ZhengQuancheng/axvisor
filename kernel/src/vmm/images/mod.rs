@@ -1,12 +1,12 @@
 use axaddrspace::GuestPhysAddr;
 use axerrno::AxResult;
 
-use axvm::VMMemoryRegion;
+// use axvm::VMMemoryRegion;
 use axvm::config::AxVMCrateConfig;
 use byte_unit::Byte;
 
-use crate::hal::CacheOp;
-use crate::vmm::VMRef;
+// use crate::hal::CacheOp;
+// use crate::vmm::VMRef;
 use crate::vmm::config::{config, get_vm_dtb_arc};
 
 mod linux;
@@ -39,8 +39,8 @@ where
 }
 
 pub struct ImageLoader {
-    main_memory: VMMemoryRegion,
-    vm: VMRef,
+    // main_memory: VMMemoryRegion,
+    // vm: VMRef,
     config: AxVMCrateConfig,
     kernel_load_gpa: GuestPhysAddr,
     bios_load_gpa: Option<GuestPhysAddr>,
@@ -160,11 +160,11 @@ pub fn load_vm_image_from_memory(
             );
         }
 
-        crate::hal::arch::cache::dcache_range(
-            CacheOp::Clean,
-            (region.as_ptr() as usize).into(),
-            region_len,
-        );
+        // crate::hal::arch::cache::dcache_range(
+        //     CacheOp::Clean,
+        //     (region.as_ptr() as usize).into(),
+        //     region_len,
+        // );
 
         // Update the position of the buffer.
         buffer_pos += bytes_to_write;
