@@ -17,6 +17,7 @@ use std::os::arceos::{
 };
 
 use axerrno::{AxResult, ax_err_type};
+use axvuart::PL011Manager;
 
 use crate::{
     hal::{AxVCpuHalImpl, AxVMHalImpl},
@@ -49,6 +50,11 @@ pub fn init() {
     for vm in vm_list::get_vm_list() {
         vcpus::setup_vm_primary_vcpu(vm);
     }
+
+    // Setup inter-VM communication devices.
+    info!("Setting up inter-VM communication devices...");
+    // For simple demonstration, connect UARTs of VM 1 and VM 2.
+    PL011Manager::connect(1, 2);
 }
 
 /// Start the VMM.

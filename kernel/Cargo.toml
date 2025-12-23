@@ -36,6 +36,7 @@ axhvc.workspace = true
 axruntime = {workspace = true, features = ["alloc", "irq", "paging", "smp", "multitask"]}
 axvcpu.workspace = true
 axvm.workspace = true
+axvuart.workspace = true
 
 # System independent crates provided by ArceOS, these crates could be imported by remote url. 
 axerrno.workspace = true
